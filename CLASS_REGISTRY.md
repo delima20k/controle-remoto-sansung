@@ -61,6 +61,7 @@
 | SmartThingsOAuthService | functions/src/smartthings/SmartThingsOAuthService.ts | application | Controla OAuth, state, token exchange, refresh e desconexao. | Functions |
 | SmartThingsRemoteAdapter | public/js/services/SmartThingsRemoteAdapter.js | infra | Integra o front-end com callable Functions SmartThings quando configuradas. | Front-end PWA |
 | SmartThingsTokenRepository | functions/src/repositories/SmartThingsTokenRepository.ts | infra | Persiste states OAuth e tokens SmartThings criptografados. | Functions |
+| SmartThingsWebhookConfirmationService | functions/src/smartthings/SmartThingsWebhookConfirmationService.ts | application | Valida e confirma somente o desafio HTTPS oficial de registro do webhook SmartThings. | Functions |
 | StatusHeader | public/js/components/StatusHeader.js | ui | Mostra TV alvo, status de conexao, conectividade e configuracoes. | Front-end PWA |
 | StreamingAppsCatalog | public/js/data/StreamingAppsCatalog.js | domain | Mantem catalogo local extensivel de apps de streaming sem logos oficiais. | Front-end PWA |
 | ThemePanel | public/js/components/ThemePanel.js | ui | Exibe selecao de tema persistida localmente. | Front-end PWA |

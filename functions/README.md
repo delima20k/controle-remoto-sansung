@@ -48,6 +48,7 @@ firebase functions:secrets:set TOKEN_ENCRYPTION_KEY
 
 - `createSmartThingsAuthorizationUrl`: callable autenticada; cria `state` temporario e retorna URL OAuth.
 - `smartThingsOAuthCallback`: HTTP; valida `state`, troca `code` por tokens e salva tokens criptografados.
+- `smartThingsWebhook`: HTTP; confirma com seguranca o registro da API Access App na SmartThings.
 - `disconnectSmartThings`: callable; revoga localmente a conexao.
 - `listSmartThingsDevices`: callable; lista e filtra TVs/media players.
 - `getSmartThingsDeviceStatus`: callable; consulta status do dispositivo do usuario.

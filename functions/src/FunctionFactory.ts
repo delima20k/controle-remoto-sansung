@@ -13,6 +13,7 @@ import { SmartThingsCommandService } from "./smartthings/SmartThingsCommandServi
 import { SmartThingsDeviceService } from "./smartthings/SmartThingsDeviceService";
 import { SmartThingsOAuthService } from "./smartthings/SmartThingsOAuthService";
 import { SamsungCu7700Profile } from "./smartthings/SamsungCu7700Profile";
+import { SmartThingsWebhookConfirmationService } from "./smartthings/SmartThingsWebhookConfirmationService";
 import { CryptoService } from "./utils/CryptoService";
 import { HttpClient } from "./utils/HttpClient";
 import { RateLimiter } from "./middleware/RateLimiter";
@@ -41,6 +42,7 @@ export class FunctionFactory {
       userPreferencesService: new UserPreferencesService(userRepository),
       userDeletionService: new UserDeletionService(auth, userRepository, oauthService),
       smartThingsOAuthService: oauthService,
+      smartThingsWebhookConfirmationService: new SmartThingsWebhookConfirmationService(httpClient),
       smartThingsDeviceService: deviceService,
       smartThingsCommandService: commandService,
       naturalLanguageCommandService: new NaturalLanguageCommandService(),

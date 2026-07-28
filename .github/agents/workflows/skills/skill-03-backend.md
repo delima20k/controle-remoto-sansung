@@ -117,6 +117,13 @@ Para cada nova rota ou ajuste na BFF:
 - Entrega deve ir por filas dedicadas `notifications.high` e `notifications.default`, com tracking de delivery/open/click como eventos de dominio.
 - Templates devem ter i18n e renderer centralizado; controllers nao renderizam texto nem escolhem canal.
 
+## 7.1 WEBHOOKS EXTERNOS DE INTEGRACAO
+
+- Webhooks de terceiros devem aceitar apenas os metodos e payloads estritamente necessarios.
+- URLs de confirmacao recebidas em payload devem ser validadas por protocolo e allowlist de host antes de qualquer chamada externa, evitando SSRF.
+- Eventos sem processamento implementado devem ser reconhecidos sem persistir dados ou executar efeitos colaterais.
+- Tokens, payloads integrais e URLs temporarias nao podem ir para logs.
+
 ## 8. SCHEDULER CANONICO NA BFF
 
 - Tarefas recorrentes de dominio devem ficar em Scheduler unico atras da BFF/worker, nao em `setInterval` espalhado.

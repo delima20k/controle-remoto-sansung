@@ -70,6 +70,22 @@ export const smartThingsOAuthCallback = onRequest(
   }
 );
 
+export const smartThingsWebhook = onRequest(
+  { timeoutSeconds: 15 },
+  async (request, response) => {
+    if (request.method !== "POST") {
+      response.status(405).send("Metodo nao permitido");
+      return;
+    }
+    try {
+      await FunctionFactory.build().smartThingsWebhookConfirmationService.handle(request.body ?? {});
+      response.status(204).send();
+    } catch {
+      response.status(400).send("Requisicao SmartThings invalida");
+    }
+  }
+);
+
 export const disconnectSmartThings = onCall(
   { enforceAppCheck: true, secrets: smartThingsSecrets },
   async (request) => {
