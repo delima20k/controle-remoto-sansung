@@ -1,0 +1,118 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(uid) {
+      return signedIn() && request.auth.uid == uid;
+    }
+
+    function unchanged(keys) {
+      return !request.resource.data.diff(resource.data).affectedKeys().hasAny(keys);
+    }
+
+    function validString(value, min, max) {
+      return value is string && value.size() >= min && value.size() <= max;
+    }
+
+    function ownerFieldIs(uid) {
+      return request.resource.data.ownerUid == uid;
+    }
+
+    match /users/{uid} {
+      allow get: if isOwner(uid);
+      allow list: if false;
+      allow create: if isOwner(uid)
+        && request.resource.data.uid == uid
+        && request.resource.data.keys().hasOnly(['uid', 'displayName', 'emailNormalized', 'emailVerified', 'createdAt', 'updatedAt', 'deletedAt'])
+        && validString(request.resource.data.emailNormalized, 3, 254)
+        && request.resource.data.emailVerified is bool;
+      allow update: if isOwner(uid)
+        && request.resource.data.uid == uid
+        && unchanged(['uid', 'createdAt'])
+        && request.resource.data.keys().hasOnly(['uid', 'displayName', 'emailNormalized', 'emailVerified', 'createdAt', 'updatedAt', 'deletedAt'])
+        && validString(request.resource.data.emailNormalized, 3, 254)
+        && request.resource.data.emailVerified is bool;
+      allow delete: if false;
+
+      match /devices/{deviceId} {
+        allow get: if isOwner(uid);
+        allow list: if isOwner(uid) && request.query.limit <= 50;
+        allow create, update, delete: if false;
+      }
+
+      match /preferences/default {
+        allow get: if isOwner(uid);
+        allow create: if isOwner(uid)
+          && ownerFieldIs(uid)
+          && request.resource.data.keys().hasOnly(['ownerUid', 'theme', 'highContrast', 'hapticsEnabled', 'defaultControlMode', 'selectedDeviceId', 'language', 'updatedAt'])
+          && request.resource.data.theme in ['light', 'dark', 'system']
+          && request.resource.data.defaultControlMode in ['smartthings', 'localBridge']
+          && request.resource.data.highContrast is bool
+          && request.resource.data.hapticsEnabled is bool
+          && request.resource.data.language == 'pt-BR';
+        allow update: if isOwner(uid)
+          && resource.data.ownerUid == uid
+          && ownerFieldIs(uid)
+          && unchanged(['ownerUid'])
+          && request.resource.data.keys().hasOnly(['ownerUid', 'theme', 'highContrast', 'hapticsEnabled', 'defaultControlMode', 'selectedDeviceId', 'language', 'updatedAt'])
+          && request.resource.data.theme in ['light', 'dark', 'system']
+          && request.resource.data.defaultControlMode in ['smartthings', 'localBridge']
+          && request.resource.data.highContrast is bool
+          && request.resource.data.hapticsEnabled is bool
+          && request.resource.data.language == 'pt-BR';
+        allow delete: if false;
+      }
+
+      match /smartThingsConnections/default {
+        allow read, write: if false;
+      }
+
+      match /favoriteCommands/{favoriteId} {
+        allow get: if isOwner(uid);
+        allow list: if isOwner(uid) && request.query.limit <= 50;
+        allow create: if isOwner(uid)
+          && ownerFieldIs(uid)
+          && request.resource.data.keys().hasOnly(['ownerUid', 'deviceId', 'label', 'command', 'parameters', 'position', 'createdAt', 'updatedAt'])
+          && validString(request.resource.data.deviceId, 1, 160)
+          && validString(request.resource.data.label, 1, 40)
+          && request.resource.data.position is int
+          && request.resource.data.position >= 0
+          && request.resource.data.position <= 99
+          && request.resource.data.command in ['POWER_ON', 'POWER_OFF', 'VOLUME_UP', 'VOLUME_DOWN', 'SET_VOLUME', 'MUTE', 'UNMUTE', 'CHANNEL_UP', 'CHANNEL_DOWN', 'SET_CHANNEL', 'PLAY', 'PAUSE', 'PLAY_PAUSE', 'FAST_FORWARD', 'REWIND', 'OPEN_APP', 'NUMBER_KEY'];
+        allow update: if isOwner(uid)
+          && resource.data.ownerUid == uid
+          && ownerFieldIs(uid)
+          && unchanged(['ownerUid', 'createdAt'])
+          && request.resource.data.keys().hasOnly(['ownerUid', 'deviceId', 'label', 'command', 'parameters', 'position', 'createdAt', 'updatedAt'])
+          && validString(request.resource.data.deviceId, 1, 160)
+          && validString(request.resource.data.label, 1, 40)
+          && request.resource.data.position is int
+          && request.resource.data.position >= 0
+          && request.resource.data.position <= 99;
+        allow delete: if isOwner(uid) && resource.data.ownerUid == uid;
+      }
+
+      match /auditEvents/{eventId} {
+        allow get: if isOwner(uid);
+        allow list: if isOwner(uid) && request.query.limit <= 50;
+        allow create, update, delete: if false;
+      }
+    }
+
+    match /oauthStates/{stateId} {
+      allow read, write: if false;
+    }
+
+    match /rateLimits/{rateLimitId} {
+      allow read, write: if false;
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

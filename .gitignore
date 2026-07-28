@@ -1,0 +1,40 @@
+# Dependencies
+node_modules/
+functions/node_modules/
+local-bridge/node_modules/
+
+# Build output
+functions/lib/
+local-bridge/lib/
+dist/
+coverage/
+
+# Firebase
+.firebase/
+firebase-debug.log
+firestore-debug.log
+ui-debug.log
+database-debug.log
+pubsub-debug.log
+
+# Secrets and local state
+.env
+.env.*
+!.env.example
+functions/.env
+functions/.env.*
+!functions/.env.example
+local-bridge/.env
+local-bridge/.env.*
+!local-bridge/.env.example
+local-bridge/data/
+*.pem
+*.key
+*.crt
+*.p12
+
+# OS/editor
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/extensions.json

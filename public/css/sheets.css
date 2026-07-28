@@ -1,0 +1,122 @@
+.sheet-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: grid;
+  align-items: end;
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.56);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--duration-medium) var(--ease-premium);
+}
+
+.sheet-backdrop.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.bottom-sheet {
+  width: min(720px, 100%);
+  max-height: min(78dvh, 720px);
+  margin: 0 auto;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  border: 1px solid var(--color-remote-edge);
+  border-radius: var(--radius-sheet) var(--radius-sheet) 20px 20px;
+  color: var(--color-text);
+  background: var(--color-panel);
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.52);
+  transform: translateY(24px) scale(0.98);
+  transition: transform var(--duration-medium) var(--ease-premium);
+}
+
+.sheet-backdrop.is-open .bottom-sheet {
+  transform: translateY(0) scale(1);
+}
+
+.bottom-sheet__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 16px 12px;
+}
+
+.bottom-sheet__title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 850;
+  letter-spacing: 0;
+}
+
+.bottom-sheet__subtitle {
+  margin: 3px 0 0;
+  color: var(--color-muted);
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.bottom-sheet__content {
+  overflow: auto;
+  padding: 0 16px 18px;
+  overscroll-behavior: contain;
+}
+
+.apps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(86px, 1fr));
+  gap: 10px;
+}
+
+.app-button {
+  min-height: 84px;
+  flex-direction: column;
+  padding: 10px 6px;
+}
+
+.app-button__icon {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  color: #ffffff;
+  background: linear-gradient(145deg, #26486a, #1266b8);
+  background-repeat: no-repeat;
+  font-size: 0.8rem;
+  font-weight: 900;
+}
+
+.keypad-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.keypad-grid .remote-button {
+  min-height: 58px;
+  font-size: 1rem;
+}
+
+.extras-grid,
+.theme-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 10px;
+}
+
+.theme-grid .remote-button[aria-pressed="true"] {
+  border-color: var(--color-accent-strong);
+  box-shadow: var(--shadow-button), var(--shadow-glow);
+}
+
+@media (min-width: 760px) {
+  .sheet-backdrop {
+    align-items: center;
+  }
+
+  .bottom-sheet {
+    border-radius: var(--radius-sheet);
+  }
+}

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Controle TV">
+  <rect width="512" height="512" rx="112" fill="#111111"/>
+  <circle cx="256" cy="154" r="54" fill="#db3434"/>
+  <circle cx="256" cy="286" r="112" fill="#242424"/>
+  <circle cx="256" cy="286" r="42" fill="#0e8fff"/>
+  <rect x="172" y="416" width="168" height="36" rx="18" fill="#3a3a3a"/>
+</svg>

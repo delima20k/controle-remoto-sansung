@@ -1,0 +1,19 @@
+{
+  "name": "Controle TV",
+  "short_name": "Controle TV",
+  "description": "Controle remoto PWA para Smart TV Samsung CU7700 com adapters SmartThings e Local Bridge.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#080808",
+  "theme_color": "#111111",
+  "icons": [
+    {
+      "src": "/assets/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

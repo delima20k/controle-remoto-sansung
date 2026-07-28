@@ -1,0 +1,67 @@
+:root {
+  color-scheme: dark;
+  --color-page: #050505;
+  --color-page-soft: #121212;
+  --color-remote: #111111;
+  --color-remote-edge: #2c2c2c;
+  --color-panel: #181818;
+  --color-button: #2a2a2a;
+  --color-button-top: #373737;
+  --color-button-border: #474747;
+  --color-text: #f5f7fb;
+  --color-muted: #9da5b2;
+  --color-subtle: #6f7784;
+  --color-accent: #1292ff;
+  --color-accent-soft: rgba(18, 146, 255, 0.22);
+  --color-accent-strong: #65bdff;
+  --color-danger: #dc3939;
+  --color-danger-dark: #8f2020;
+  --color-success: #41d77a;
+  --shadow-remote: 0 24px 68px rgba(0, 0, 0, 0.48), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  --shadow-button: 0 10px 18px rgba(0, 0, 0, 0.34), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  --shadow-glow: 0 0 0 1px rgba(18, 146, 255, 0.7), 0 0 24px rgba(18, 146, 255, 0.42);
+  --radius-remote: 42px;
+  --radius-sheet: 24px;
+  --radius-button: 18px;
+  --duration-fast: 140ms;
+  --duration-medium: 240ms;
+  --ease-premium: cubic-bezier(0.2, 0.8, 0.2, 1);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  --color-page: #eff3f8;
+  --color-page-soft: #f8fafc;
+  --color-remote: #f7f9fc;
+  --color-remote-edge: #d5dce5;
+  --color-panel: #ffffff;
+  --color-button: #e4e9f0;
+  --color-button-top: #f9fbff;
+  --color-button-border: #cfd7e2;
+  --color-text: #101725;
+  --color-muted: #536071;
+  --color-subtle: #7d8794;
+  --shadow-remote: 0 24px 68px rgba(41, 52, 76, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  --shadow-button: 0 10px 18px rgba(41, 52, 76, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.88);
+}
+
+:root[data-theme="amoled"] {
+  color-scheme: dark;
+  --color-page: #000000;
+  --color-page-soft: #000000;
+  --color-remote: #050505;
+  --color-remote-edge: #1c1c1c;
+  --color-panel: #070707;
+  --color-button: #171717;
+  --color-button-top: #222222;
+  --color-button-border: #303030;
+  --shadow-remote: 0 24px 64px rgba(0, 0, 0, 0.76), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-fast: 1ms;
+    --duration-medium: 1ms;
+  }
+}
