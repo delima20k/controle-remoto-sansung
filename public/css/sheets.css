@@ -81,8 +81,9 @@
   display: grid;
   place-items: center;
   border-radius: 12px;
-  color: #ffffff;
-  background: linear-gradient(145deg, #26486a, #1266b8);
+  color: #19334d;
+  background: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.7);
   background-repeat: no-repeat;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.24), 0 4px 10px rgba(0, 0, 0, 0.22);
   font-size: 1rem;
@@ -99,20 +100,47 @@
   object-fit: contain;
 }
 
-.app-button[data-icon-kind="film"] .remote-button__icon,
-.app-button[data-icon-kind="video"] .remote-button__icon,
-.app-button[data-icon-kind="play"] .remote-button__icon {
-  background: linear-gradient(145deg, #e62323, #8d1111);
+.apps-search {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px;
+  margin-bottom: 14px;
 }
 
-.app-button[data-icon-kind="music"] .remote-button__icon,
-.app-button[data-icon-kind="live"] .remote-button__icon {
-  background: linear-gradient(145deg, #20bc6b, #087a41);
+.apps-search__input,
+.apps-search__submit {
+  min-height: 42px;
+  border-radius: 12px;
+  font: inherit;
 }
 
-.app-button[data-icon-kind="game"] .remote-button__icon,
-.app-button[data-icon-kind="sport"] .remote-button__icon {
-  background: linear-gradient(145deg, #7b5bdb, #41308d);
+.apps-search__input {
+  min-width: 0;
+  padding: 0 12px;
+  border: 1px solid var(--color-remote-edge);
+  color: var(--color-text);
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.apps-search__input:focus-visible,
+.apps-search__submit:focus-visible {
+  outline: 3px solid var(--color-accent-strong);
+  outline-offset: 2px;
+}
+
+.apps-search__submit {
+  padding: 0 14px;
+  border: 0;
+  color: #ffffff;
+  background: var(--color-accent-strong);
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.apps-empty {
+  margin: 16px 0 0;
+  color: var(--color-muted);
+  text-align: center;
 }
 
 .keypad-grid {

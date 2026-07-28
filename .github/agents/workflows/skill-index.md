@@ -33,7 +33,7 @@
 | Front-end / nova tela / layout / CSS | `skill-02-frontend.md` |
 | Animações / navegação / Router | `skill-02-frontend.md` (§ Router, § Animação de telas) |
 | Cards / componentes visuais | `skill-02-frontend.md` (§ Cards, § Componentes globais) |
-| Logotipos de apps / icones de marca em componentes | `skill-02-frontend.md` (Logotipos de aplicativos), `skill-04-seguranca.md`, `skill-07-testes.md` |
+| Logotipos de apps / busca em catalogos / icones de marca em componentes | `skill-02-frontend.md` (Logotipos de aplicativos), `skill-04-seguranca.md`, `skill-07-testes.md` |
 | Backend / BFF / services / controllers / rotas | `skill-03-backend.md` |
 | Segurança / OWASP / autenticação / JWT / headers | `skill-04-seguranca.md` |
 | Banco / queries / migrations / storage / Supabase | `skill-05-banco.md` |

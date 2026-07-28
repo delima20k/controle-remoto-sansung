@@ -1,4 +1,17 @@
 export class StreamingAppsCatalog {
+  static #PRIORITY_IDS = new Map([
+    ["netflix", 0],
+    ["prime-video", 1],
+    ["youtube", 2],
+    ["disney-plus", 3],
+    ["max", 4],
+    ["globoplay", 5],
+    ["apple-tv", 6],
+    ["paramount-plus", 7],
+    ["crunchyroll", 8],
+    ["spotify", 9]
+  ]);
+
   static #ICON_SLUGS = Object.freeze({
     "samsung-tv-plus": "samsung",
     "google-play-filmes": "googleplay",
@@ -61,7 +74,7 @@ export class StreamingAppsCatalog {
 
   static #APPS = [
     ["netflix", "Netflix", "film"],
-    ["prime-video", "Prime Video", "play"],
+    ["prime-video", "Amazon Prime Video", "play"],
     ["disney-plus", "Disney+", "spark"],
     ["max", "Max", "max"],
     ["globoplay", "Globoplay", "globo"],
@@ -119,6 +132,7 @@ export class StreamingAppsCatalog {
     const installed = Array.isArray(installedAppIds) ? new Set(installedAppIds) : null;
     return StreamingAppsCatalog.#APPS
       .filter(([id]) => !installed || installed.has(id))
+      .sort(([firstId], [secondId]) => StreamingAppsCatalog.#priority(firstId) - StreamingAppsCatalog.#priority(secondId))
       .map(([id, label, iconKind]) => ({
         id,
         label,
@@ -133,5 +147,9 @@ export class StreamingAppsCatalog {
 
   static #iconSlug(id) {
     return StreamingAppsCatalog.#ICON_SLUGS[id] ?? id.replace(/[^a-z0-9]/g, "");
+  }
+
+  static #priority(id) {
+    return StreamingAppsCatalog.#PRIORITY_IDS.get(id) ?? Number.MAX_SAFE_INTEGER;
   }
 }

@@ -102,6 +102,7 @@ const App = new NomeApp();
 - Logotipos de terceiros devem ser definidos no catalogo de dados, nunca duplicados nos componentes.
 - Carregue-os de uma origem de imagem explicitamente permitida no CSP, com `loading="lazy"`, `referrerpolicy="no-referrer"` e fallback visual local.
 - Ao alterar arquivos que fazem parte do app shell PWA, incremente a versao do cache no service worker.
+- Filtros de catalogo devem manter os elementos ja renderizados e apenas alternar sua visibilidade, preservando estado, listeners e disponibilidade.
 
 ## 8. SECTIONS EM GOD FILES DE PAGINA
 

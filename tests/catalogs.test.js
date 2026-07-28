@@ -9,6 +9,7 @@ describe("StreamingAppsCatalog", () => {
 
     assert.equal(apps.length, 53);
     assert.equal(apps.every((app) => app.command === "OPEN_APP" && app.iconKind && app.icon && /^https:\/\/cdn\.simpleicons\.org\/[a-z0-9]+$/.test(app.iconUrl)), true);
+    assert.deepEqual(apps.slice(0, 3).map((app) => app.label), ["Netflix", "Amazon Prime Video", "YouTube"]);
   });
 
   it("deve ocultar apps nao instalados quando houver lista confirmada", async () => {
