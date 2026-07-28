@@ -1,0 +1,6 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "node scripts/check-frontend-modules.js",
+  "outputDirectory": "public",
+  "cleanUrls": true
+}

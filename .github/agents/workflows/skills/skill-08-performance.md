@@ -129,6 +129,7 @@ Ver análise completa em `docs/cache.md`.
 - Quando o build raiz executar scripts de pacotes internos, declare esses pacotes em `workspaces` no `package.json` raiz.
 - Versione o `package-lock.json` raiz gerado após incluir ou atualizar workspaces, para que CI e provedores de deploy instalem o mesmo grafo de dependências.
 - Não presuma que `npm install` na raiz instala dependências de subdiretórios sem workspaces; valide o build em ambiente limpo ou com o lockfile raiz.
+- Para hospedar somente um front-end estático, configure explicitamente `buildCommand` e `outputDirectory` no `vercel.json`; não execute o build dos serviços que pertencem a outro provedor.
 
 ## 6. FEED ESCALAVEL NA BFF
 
