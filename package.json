@@ -6,6 +6,10 @@
   "engines": {
     "node": "22"
   },
+  "workspaces": [
+    "functions",
+    "local-bridge"
+  ],
   "scripts": {
     "build": "node scripts/check-frontend-modules.js && npm run build --prefix functions && npm run build --prefix local-bridge",
     "test": "node --test \"tests/**/*.test.js\" && npm run test --prefix functions && npm run test --prefix local-bridge",
