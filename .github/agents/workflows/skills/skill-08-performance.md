@@ -124,6 +124,12 @@ Ver análise completa em `docs/cache.md`.
 - Vendor via npm é o destino final; CDN/script solto só permanece em allowlist com justificativa e plano de remoção.
 - Promoção para produção exige critérios objetivos de TBT, LCP, INP e taxa de erro JS; rollback deve voltar ao HTML legado ou artefato anterior versionado.
 
+## 5.2 BUILD DE MONOREPO / WORKSPACES NPM
+
+- Quando o build raiz executar scripts de pacotes internos, declare esses pacotes em `workspaces` no `package.json` raiz.
+- Versione o `package-lock.json` raiz gerado após incluir ou atualizar workspaces, para que CI e provedores de deploy instalem o mesmo grafo de dependências.
+- Não presuma que `npm install` na raiz instala dependências de subdiretórios sem workspaces; valide o build em ambiente limpo ou com o lockfile raiz.
+
 ## 6. FEED ESCALAVEL NA BFF
 
 - Feed pesado deve ficar atras da BFF e usar cursor estavel `(created_at, id)`, nunca `OFFSET`.

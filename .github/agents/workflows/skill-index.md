@@ -44,6 +44,7 @@
 | Testes / TDD / validações / edge cases | `skill-07-testes.md` |
 | Performance / cache / custo / paginação / otimização | `skill-08-performance.md` |
 | Vite / bundler frontend / chunks / bundle budget / Lighthouse CI | `skill-08-performance.md` (Pipeline Vite / bundler frontend), `skill-02-frontend.md`, `skill-07-testes.md`, `skill-09-refatoracao.md` |
+| Vercel / build com pacotes internos / workspaces npm | `skill-08-performance.md` (Build de monorepo / workspaces npm), `skill-07-testes.md` |
 | Feed BFF / fanout hibrido / cursor estavel / cache Redis da timeline | `skill-08-performance.md` (Feed escalavel na BFF), `skill-03-backend.md`, `skill-05-banco.md`, `skill-07-testes.md`, `barberflow-bff-api/docs/filas.md` |
 | Refatoração / revisão / check final / commit | `skill-09-refatoracao.md` |
 | **Tarefa não encontrada em nenhum arquivo** | Ler `skill.md` + este índice + arquivos relacionados; se a regra não existir, implementar como sênior; documentar a nova boa prática no arquivo correto; atualizar este índice |
