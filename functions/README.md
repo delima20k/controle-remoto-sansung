@@ -10,6 +10,10 @@ Back-end serverless do Controle TV usando Cloud Functions for Firebase v2, Fires
 - `typescript`: compilacao em modo strict.
 - `@types/node`: tipos do runtime Node.js 22.
 
+## Build E Deploy
+
+O campo `main` de `functions/package.json` deve apontar para o mesmo arquivo gerado por `tsconfig.json`. O teste `package-entrypoint.test.ts` bloqueia o deploy se esse contrato for quebrado.
+
 ## Secrets Obrigatorios
 
 Cadastre com Firebase Functions Secrets:

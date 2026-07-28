@@ -124,6 +124,11 @@ Para cada nova rota ou ajuste na BFF:
 - Eventos sem processamento implementado devem ser reconhecidos sem persistir dados ou executar efeitos colaterais.
 - Tokens, payloads integrais e URLs temporarias nao podem ir para logs.
 
+## 7.2 DEPLOY TYPESCRIPT DE FUNCTIONS
+
+- O campo `main` do pacote de Functions deve apontar exatamente para o entrypoint gerado pelo `tsconfig.json`.
+- Todo build de Functions deve ter teste que valide a existencia do entrypoint configurado antes do deploy.
+
 ## 8. SCHEDULER CANONICO NA BFF
 
 - Tarefas recorrentes de dominio devem ficar em Scheduler unico atras da BFF/worker, nao em `setInterval` espalhado.
