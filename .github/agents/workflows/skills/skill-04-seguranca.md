@@ -63,3 +63,11 @@ X-Frame-Options: DENY
 Strict-Transport-Security: max-age=31536000; includeSubDomains
 Referrer-Policy: no-referrer
 ```
+
+## 6. FIREBASE WEB EM PWA/TWA
+
+- A configuracao Web do Firebase pode ficar no cliente; ela nao substitui regras, Authentication, App Check ou validacao no BFF.
+- Segredos de integracoes externas, tokens de acesso e chaves de criptografia ficam exclusivamente nas Functions/Secret Manager.
+- Sessao anonima deve ser criada pelo SDK Web, sem credenciais inventadas no cliente.
+- Ao carregar SDKs pelo CDN, fixe a versao, permita somente `https://www.gstatic.com` no `script-src` e limite `connect-src` aos endpoints necessarios.
+- App Check deve ser monitorado antes de ser imposto, para nao bloquear PWA/TWA ja publicados.

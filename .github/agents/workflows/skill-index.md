@@ -36,6 +36,7 @@
 | Logotipos de apps / busca em catalogos / icones de marca em componentes | `skill-02-frontend.md` (Logotipos de aplicativos), `skill-04-seguranca.md`, `skill-07-testes.md` |
 | Backend / BFF / services / controllers / rotas | `skill-03-backend.md` |
 | Segurança / OWASP / autenticação / JWT / headers | `skill-04-seguranca.md` |
+| Firebase Web em PWA/TWA / sessão anônima / SDK por CDN | `skill-04-seguranca.md` (Firebase Web em PWA/TWA), `skill-07-testes.md` |
 | Banco / queries / migrations / storage / Supabase | `skill-05-banco.md` |
 | RLS policies / cobertura CRUD / report de tabelas sem RLS | `skill-05-banco.md` (§ Cobertura automatizada de RLS), `skill-04-seguranca.md`, `skill-07-testes.md` |
 | Upload pre-assinado / pipeline assincrono de midia / variantes | `skill-05-banco.md` (Pipeline assincrono de midia na BFF), `skill-03-backend.md`, `skill-07-testes.md`, `barberflow-bff-api/docs/filas.md` |

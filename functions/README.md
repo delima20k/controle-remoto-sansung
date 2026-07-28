@@ -29,7 +29,7 @@ firebase functions:secrets:set TOKEN_ENCRYPTION_KEY
 
 1. Crie um projeto Firebase.
 2. Ative Authentication.
-3. Habilite provedores Google e Email/Password.
+3. Habilite o provedor Anonymous para acesso direto, sem tela de cadastro.
 4. Crie Firestore em production mode.
 5. Configure App Check para Web.
 6. Publique `firestore.rules` e `firestore.indexes.json`.

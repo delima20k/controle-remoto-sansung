@@ -24,6 +24,8 @@
 | DPad | public/js/components/DPad.js | ui | Renderiza direcional circular com OK central. | Front-end PWA |
 | ExtrasCatalog | public/js/data/ExtrasCatalog.js | domain | Lista atalhos extras e bloqueia itens sem comando confirmado. | Front-end PWA |
 | ExtrasSheet | public/js/components/ExtrasSheet.js | ui | Exibe painel de atalhos extras habilitando somente comandos confirmados. | Front-end PWA |
+| FirebaseSessionService | public/js/services/FirebaseSessionService.js | application | Inicializa sessao anonima do Firebase e fornece Functions na regiao do projeto. | Front-end PWA/TWA |
+| FirebaseWebConfig | public/js/config/FirebaseWebConfig.js | infra | Centraliza a configuracao publica do Firebase Web e a regiao das Functions. | Front-end PWA/TWA |
 | FrontendModuleSyntaxChecker | scripts/check-frontend-modules.js | infra | Valida sintaxe dos ES Modules do front-end e service worker. | Build |
 | FrontendRemoteCommandCatalog | public/js/data/FrontendRemoteCommandCatalog.js | domain | Define allowlist e validacao de parametros de comandos do front-end. | Front-end PWA |
 | FunctionFactory | functions/src/FunctionFactory.ts | infra | Compoe services, repositories e adapters das Functions. | Functions |

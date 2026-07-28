@@ -143,8 +143,8 @@ Smart TV Samsung
 
 1. Usuario abre o PWA.
 2. App inicializa Firebase Web SDK com configuracao publica do projeto.
-3. Usuario escolhe Google ou e-mail/senha.
-4. Firebase Authentication emite ID token.
+3. O PWA inicia uma sessao anonima, sem tela de cadastro ou senha.
+4. Firebase Authentication emite ID token vinculado ao dispositivo/navegador.
 5. Chamadas para Cloud Functions usam Callable Functions quando possivel, com Auth e App Check incluidos pelo SDK.
 6. Cloud Functions validam `request.auth.uid`, App Check e entrada.
 
