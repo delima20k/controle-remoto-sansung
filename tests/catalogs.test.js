@@ -3,12 +3,12 @@ const assert = require("node:assert/strict");
 const { FrontendTestImporter } = require("./frontend-test-importer");
 
 describe("StreamingAppsCatalog", () => {
-  it("deve listar todos os principais apps solicitados sem logos oficiais", async () => {
+  it("deve listar todos os principais apps solicitados com icones de marca", async () => {
     const { StreamingAppsCatalog } = await FrontendTestImporter.import("data/StreamingAppsCatalog.js");
     const apps = new StreamingAppsCatalog().getVisibleApps();
 
     assert.equal(apps.length, 53);
-    assert.equal(apps.every((app) => app.command === "OPEN_APP" && app.iconKind && app.icon), true);
+    assert.equal(apps.every((app) => app.command === "OPEN_APP" && app.iconKind && app.icon && /^https:\/\/cdn\.simpleicons\.org\/[a-z0-9]+$/.test(app.iconUrl)), true);
   });
 
   it("deve ocultar apps nao instalados quando houver lista confirmada", async () => {

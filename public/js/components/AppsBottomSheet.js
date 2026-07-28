@@ -8,13 +8,14 @@ export class AppsBottomSheet {
   #buttons = [];
 
   constructor(onPress) {
-    this.#sheet = new BaseSheet("Apps", "Apps sugeridos; a TV real pode ocultar ou bloquear nao instalados.");
+    this.#sheet = new BaseSheet("Apps", "Apps sugeridos; a TV real pode ocultar ou bloquear nao instalados.", { fullscreenMobile: true });
     const grid = document.createElement("div");
     grid.className = "apps-grid";
     for (const app of this.#catalog.getVisibleApps()) {
       const button = new RemoteButton({
         label: app.label,
         icon: app.icon,
+        iconUrl: app.iconUrl,
         command: "OPEN_APP",
         ariaLabel: `Abrir ${app.label}`,
         variant: "app-button",

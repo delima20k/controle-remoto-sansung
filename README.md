@@ -228,7 +228,7 @@ Importante: resposta `ACCEPTED` da SmartThings significa comando aceito para exe
 default-src 'self';
 script-src 'self' https://www.gstatic.com https://www.googletagmanager.com;
 style-src 'self';
-img-src 'self' data: blob:;
+img-src 'self' data: blob: https://cdn.simpleicons.org;
 font-src 'self';
 connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://*.cloudfunctions.net https://api.smartthings.com;
 manifest-src 'self';
@@ -251,7 +251,7 @@ Para Local Bridge, adicionar origem local somente apos decisao tecnica, por exem
       {
         "source": "**",
         "headers": [
-          { "key": "Content-Security-Policy", "value": "default-src 'self'; script-src 'self' https://www.gstatic.com https://www.googletagmanager.com; style-src 'self'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://*.cloudfunctions.net https://api.smartthings.com; manifest-src 'self'; worker-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests" },
+          { "key": "Content-Security-Policy", "value": "default-src 'self'; script-src 'self' https://www.gstatic.com https://www.googletagmanager.com; style-src 'self'; img-src 'self' data: blob: https://cdn.simpleicons.org; font-src 'self'; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://*.cloudfunctions.net https://api.smartthings.com; manifest-src 'self'; worker-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests" },
           { "key": "X-Content-Type-Options", "value": "nosniff" },
           { "key": "X-Frame-Options", "value": "DENY" },
           { "key": "Referrer-Policy", "value": "no-referrer" },

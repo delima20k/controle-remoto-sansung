@@ -87,6 +87,16 @@
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.24), 0 4px 10px rgba(0, 0, 0, 0.22);
   font-size: 1rem;
   font-weight: 900;
+  overflow: hidden;
+  position: relative;
+}
+
+.app-button .remote-button__icon-image {
+  position: absolute;
+  inset: 5px;
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
 }
 
 .app-button[data-icon-kind="film"] .remote-button__icon,
@@ -135,5 +145,26 @@
 
   .bottom-sheet {
     border-radius: var(--radius-sheet);
+  }
+}
+
+@media (max-width: 759px) {
+  .sheet-backdrop--fullscreen-mobile {
+    padding: 0;
+  }
+
+  .sheet-backdrop--fullscreen-mobile .bottom-sheet--fullscreen-mobile {
+    width: 100%;
+    height: 100dvh;
+    max-height: 100dvh;
+    border-radius: 0;
+  }
+
+  .sheet-backdrop--fullscreen-mobile .bottom-sheet__header {
+    padding-top: max(16px, env(safe-area-inset-top));
+  }
+
+  .sheet-backdrop--fullscreen-mobile .bottom-sheet__content {
+    padding-bottom: max(18px, env(safe-area-inset-bottom));
   }
 }

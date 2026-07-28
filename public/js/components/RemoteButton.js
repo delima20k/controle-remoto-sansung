@@ -42,7 +42,22 @@ export class RemoteButton {
       }
     });
     if (options.icon) {
-      element.append(this.#builder.element("span", { className: "remote-button__icon", text: options.icon, attributes: { "aria-hidden": "true" } }));
+      const icon = this.#builder.element("span", { className: "remote-button__icon", text: options.icon, attributes: { "aria-hidden": "true" } });
+      if (options.iconUrl) {
+        const image = this.#builder.element("img", {
+          className: "remote-button__icon-image",
+          attributes: {
+            src: options.iconUrl,
+            alt: "",
+            loading: "lazy",
+            decoding: "async",
+            referrerpolicy: "no-referrer"
+          }
+        });
+        image.addEventListener("error", () => image.remove());
+        icon.append(image);
+      }
+      element.append(icon);
     }
     if (options.label) {
       element.append(this.#builder.element("span", { className: "remote-button__label", text: options.label }));

@@ -97,6 +97,12 @@ const App = new NomeApp();
 | **`DigText`** | Toda animação de texto |
 | **`BarberPole`** | Toda animação de barber pole: `new BarberPole(container)` |
 | **`MediaP2P`** | Toda operação de mídia P2P — ver `skill-06-p2p-mensagens.md` |
+## 7.1 LOGOTIPOS DE APLICATIVOS
+
+- Logotipos de terceiros devem ser definidos no catalogo de dados, nunca duplicados nos componentes.
+- Carregue-os de uma origem de imagem explicitamente permitida no CSP, com `loading="lazy"`, `referrerpolicy="no-referrer"` e fallback visual local.
+- Ao alterar arquivos que fazem parte do app shell PWA, incremente a versao do cache no service worker.
+
 ## 8. SECTIONS EM GOD FILES DE PAGINA
 
 - Extrair god files de pagina por `PageSection`: `init`, `render`, `update`, `destroy`, `on` e `emit` formam o contrato base.

@@ -5,9 +5,11 @@ export class BaseSheet {
   #backdrop;
   #content;
 
-  constructor(title, subtitle) {
-    this.#backdrop = this.#builder.element("section", { className: "sheet-backdrop", attributes: { role: "dialog", "aria-modal": "true", "aria-label": title } });
-    const sheet = this.#builder.element("div", { className: "bottom-sheet" });
+  constructor(title, subtitle, options = {}) {
+    const fullscreenMobileClass = options.fullscreenMobile ? " sheet-backdrop--fullscreen-mobile" : "";
+    const sheetClass = options.fullscreenMobile ? "bottom-sheet bottom-sheet--fullscreen-mobile" : "bottom-sheet";
+    this.#backdrop = this.#builder.element("section", { className: `sheet-backdrop${fullscreenMobileClass}`, attributes: { role: "dialog", "aria-modal": "true", "aria-label": title } });
+    const sheet = this.#builder.element("div", { className: sheetClass });
     const header = this.#builder.element("header", { className: "bottom-sheet__header" });
     const titleWrap = this.#builder.element("div");
     titleWrap.append(this.#builder.element("h2", { className: "bottom-sheet__title", text: title }));

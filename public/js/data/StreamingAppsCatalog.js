@@ -1,4 +1,24 @@
 export class StreamingAppsCatalog {
+  static #ICON_SLUGS = Object.freeze({
+    "samsung-tv-plus": "samsung",
+    "google-play-filmes": "googleplay",
+    "steam-link": "steam",
+    "facebook-watch": "facebook",
+    "red-bull-tv": "redbull",
+    "discovery-plus": "discovery",
+    "lionsgate-plus": "lionsgate",
+    "sbt-videos": "sbt",
+    bandplay: "bandlab",
+    playplus: "playstation",
+    "oi-play": "oi",
+    "sky-plus": "sky",
+    "mercado-play": "mercadolibre",
+    "universal-plus": "universalpictures",
+    "amc-plus": "amc",
+    "rakuten-tv": "rakuten",
+    "haystack-news": "haystack"
+  });
+
   static #ICONS = Object.freeze({
     film: "▣",
     play: "▶",
@@ -105,8 +125,13 @@ export class StreamingAppsCatalog {
         category: "streaming",
         iconKind,
         icon: StreamingAppsCatalog.#ICONS[iconKind] ?? "●",
+        iconUrl: `https://cdn.simpleicons.org/${StreamingAppsCatalog.#iconSlug(id)}`,
         command: "OPEN_APP",
         visible: true
       }));
+  }
+
+  static #iconSlug(id) {
+    return StreamingAppsCatalog.#ICON_SLUGS[id] ?? id.replace(/[^a-z0-9]/g, "");
   }
 }
