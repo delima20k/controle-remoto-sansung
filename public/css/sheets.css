@@ -75,7 +75,7 @@
   padding: 10px 6px;
 }
 
-.app-button__icon {
+.app-button .remote-button__icon {
   width: 34px;
   height: 34px;
   display: grid;
@@ -84,8 +84,25 @@
   color: #ffffff;
   background: linear-gradient(145deg, #26486a, #1266b8);
   background-repeat: no-repeat;
-  font-size: 0.8rem;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.24), 0 4px 10px rgba(0, 0, 0, 0.22);
+  font-size: 1rem;
   font-weight: 900;
+}
+
+.app-button[data-icon-kind="film"] .remote-button__icon,
+.app-button[data-icon-kind="video"] .remote-button__icon,
+.app-button[data-icon-kind="play"] .remote-button__icon {
+  background: linear-gradient(145deg, #e62323, #8d1111);
+}
+
+.app-button[data-icon-kind="music"] .remote-button__icon,
+.app-button[data-icon-kind="live"] .remote-button__icon {
+  background: linear-gradient(145deg, #20bc6b, #087a41);
+}
+
+.app-button[data-icon-kind="game"] .remote-button__icon,
+.app-button[data-icon-kind="sport"] .remote-button__icon {
+  background: linear-gradient(145deg, #7b5bdb, #41308d);
 }
 
 .keypad-grid {

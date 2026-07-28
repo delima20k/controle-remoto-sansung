@@ -14,12 +14,13 @@ export class AppsBottomSheet {
     for (const app of this.#catalog.getVisibleApps()) {
       const button = new RemoteButton({
         label: app.label,
-        icon: this.#icon(app),
+        icon: app.icon,
         command: "OPEN_APP",
         ariaLabel: `Abrir ${app.label}`,
         variant: "app-button",
         onPress: ({ element }) => onPress({ command: "OPEN_APP", parameters: { appId: app.id }, element })
       });
+      button.element.dataset.iconKind = app.iconKind;
       this.#buttons.push(button);
       grid.append(button.element);
     }
@@ -32,9 +33,5 @@ export class AppsBottomSheet {
 
   open() {
     this.#sheet.open();
-  }
-
-  #icon(app) {
-    return app.label.split(/\s|\+/).filter(Boolean).slice(0, 2).map((part) => part[0]).join("").toUpperCase();
   }
 }

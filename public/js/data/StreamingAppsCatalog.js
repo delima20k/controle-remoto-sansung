@@ -1,4 +1,44 @@
 export class StreamingAppsCatalog {
+  static #ICONS = Object.freeze({
+    film: "▣",
+    play: "▶",
+    spark: "✦",
+    max: "M",
+    globo: "◉",
+    apple: "●",
+    mount: "⌁",
+    anime: "◈",
+    video: "▸",
+    kids: "★",
+    music: "♫",
+    plex: "▷",
+    planet: "◌",
+    tv: "▣",
+    tvp: "S",
+    vix: "V",
+    eye: "◉",
+    mubi: "M",
+    live: "●",
+    sport: "◐",
+    ball: "●",
+    star: "★",
+    game: "◆",
+    media: "◫",
+    clip: "♪",
+    watch: "◷",
+    action: "⚡",
+    discover: "⌕",
+    clock: "◷",
+    br: "BR",
+    now: "N",
+    sky: "☁",
+    cart: "▰",
+    globe: "◎",
+    store: "▱",
+    news: "▤",
+    talk: "T"
+  });
+
   static #APPS = [
     ["netflix", "Netflix", "film"],
     ["prime-video", "Prime Video", "play"],
@@ -64,6 +104,7 @@ export class StreamingAppsCatalog {
         label,
         category: "streaming",
         iconKind,
+        icon: StreamingAppsCatalog.#ICONS[iconKind] ?? "●",
         command: "OPEN_APP",
         visible: true
       }));

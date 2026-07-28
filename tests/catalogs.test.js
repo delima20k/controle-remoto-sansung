@@ -8,7 +8,7 @@ describe("StreamingAppsCatalog", () => {
     const apps = new StreamingAppsCatalog().getVisibleApps();
 
     assert.equal(apps.length, 53);
-    assert.equal(apps.every((app) => app.command === "OPEN_APP" && app.iconKind), true);
+    assert.equal(apps.every((app) => app.command === "OPEN_APP" && app.iconKind && app.icon), true);
   });
 
   it("deve ocultar apps nao instalados quando houver lista confirmada", async () => {
