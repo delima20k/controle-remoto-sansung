@@ -40,7 +40,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       # Valida secrets obrigatórios antes de qualquer operação — falha rápido com mensagem clara
       - name: Verificar secrets obrigatórios
