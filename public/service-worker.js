@@ -1,4 +1,4 @@
-const CACHE_NAME = "controle-tv-pwa-v6";
+const CACHE_NAME = "controle-tv-pwa-v7";
 const APP_SHELL = [
   "/",
   "/index.html",
@@ -31,7 +31,8 @@ self.addEventListener("activate", (event) => {
 });
 
 self.addEventListener("fetch", (event) => {
-  if (event.request.method !== "GET") {
+  const requestUrl = new URL(event.request.url);
+  if (event.request.method !== "GET" || requestUrl.origin !== self.location.origin) {
     return;
   }
   event.respondWith(
@@ -41,11 +42,14 @@ self.addEventListener("fetch", (event) => {
       }
       return fetch(event.request)
         .then((response) => {
+          if (!response.ok) {
+            return response;
+          }
           const responseClone = response.clone();
           caches.open(CACHE_NAME).then((cache) => cache.put(event.request, responseClone));
           return response;
         })
-        .catch(() => caches.match("/offline.html"));
+        .catch(() => event.request.mode === "navigate" ? caches.match("/offline.html") : Response.error());
     })
   );
 });

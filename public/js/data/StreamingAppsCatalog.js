@@ -13,23 +13,33 @@ export class StreamingAppsCatalog {
   ]);
 
   static #ICON_SLUGS = Object.freeze({
+    netflix: "netflix",
+    youtube: "youtube",
+    max: "max",
+    "apple-tv": "appletv",
+    "paramount-plus": "paramountplus",
+    crunchyroll: "crunchyroll",
+    spotify: "spotify",
+    "youtube-kids": "youtubekids",
+    plex: "plex",
     "samsung-tv-plus": "samsung",
-    "google-play-filmes": "googleplay",
+    mubi: "mubi",
+    twitch: "twitch",
+    dazn: "dazn",
+    "google-play-filmes": "googleplayfilmes",
     "steam-link": "steam",
+    kodi: "kodi",
+    deezer: "deezer",
+    "apple-music": "applemusic",
+    tiktok: "tiktok",
     "facebook-watch": "facebook",
     "red-bull-tv": "redbull",
-    "discovery-plus": "discovery",
-    "lionsgate-plus": "lionsgate",
-    "sbt-videos": "sbt",
-    bandplay: "bandlab",
-    playplus: "playstation",
-    "oi-play": "oi",
+    now: "now",
     "sky-plus": "sky",
-    "mercado-play": "mercadolibre",
-    "universal-plus": "universalpictures",
-    "amc-plus": "amc",
     "rakuten-tv": "rakuten",
-    "haystack-news": "haystack"
+    "haystack-news": "haystack",
+    ted: "ted",
+    vimeo: "vimeo"
   });
 
   static #ICONS = Object.freeze({
@@ -139,14 +149,15 @@ export class StreamingAppsCatalog {
         category: "streaming",
         iconKind,
         icon: StreamingAppsCatalog.#ICONS[iconKind] ?? "●",
-        iconUrl: `https://cdn.simpleicons.org/${StreamingAppsCatalog.#iconSlug(id)}`,
+        iconUrl: StreamingAppsCatalog.#iconUrl(id),
         command: "OPEN_APP",
         visible: true
       }));
   }
 
-  static #iconSlug(id) {
-    return StreamingAppsCatalog.#ICON_SLUGS[id] ?? id.replace(/[^a-z0-9]/g, "");
+  static #iconUrl(id) {
+    const slug = StreamingAppsCatalog.#ICON_SLUGS[id];
+    return slug ? `https://cdn.simpleicons.org/${slug}` : null;
   }
 
   static #priority(id) {
