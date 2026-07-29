@@ -128,6 +128,7 @@ Para cada nova rota ou ajuste na BFF:
 
 - O campo `main` do pacote de Functions deve apontar exatamente para o entrypoint gerado pelo `tsconfig.json`.
 - Todo build de Functions deve ter teste que valide a existencia do entrypoint configurado antes do deploy.
+- Parametros declarados com `defineString` nao podem usar nomes reservados pelo Firebase, como `FUNCTION_REGION`; a regiao deve ser definida nas opcoes globais ou da propria Function.
 
 ## 8. SCHEDULER CANONICO NA BFF
 
