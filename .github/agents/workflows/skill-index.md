@@ -75,6 +75,12 @@ Quando uma nova boa prática for criada:
 > **REGRA FINAL:** Sempre perguntar — *"Existe uma forma mais barata, mais inteligente, mais segura e mais escalável de fazer isso?"*
 > Se existir: **FAZER MELHOR.**
 
+## Atualizacao DELIMA - Firebase Admin em Functions
+
+| Tipo de tarefa | Arquivos a ler |
+|---|---|
+| Firebase Admin em Functions / inicializacao do entrypoint | `skill-03-backend.md` (Inicializacao do Firebase Admin no entrypoint), `skill-07-testes.md` |
+
 ## Atualizacao DELIMA - Notificacoes Canonicas
 
 | Tipo de tarefa | Arquivos a ler |

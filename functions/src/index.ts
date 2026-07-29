@@ -24,6 +24,8 @@ setGlobalOptions({
   maxInstances: 10
 });
 
+AdminApp.init();
+
 const smartThingsSecrets = [
   SMARTTHINGS_CLIENT_ID,
   SMARTTHINGS_CLIENT_SECRET,

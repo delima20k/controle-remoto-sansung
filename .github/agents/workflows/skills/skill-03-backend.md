@@ -136,6 +136,12 @@ Para cada nova rota ou ajuste na BFF:
 - Todo build de Functions deve ter teste que valide a existencia do entrypoint configurado antes do deploy.
 - Parametros declarados com `defineString` nao podem usar nomes reservados pelo Firebase, como `FUNCTION_REGION`; a regiao deve ser definida nas opcoes globais ou da propria Function.
 
+### Inicializacao do Firebase Admin no entrypoint
+
+- O entrypoint das Functions deve chamar `AdminApp.init()` uma vez durante o carregamento, antes de atender callables, requests ou tarefas agendadas.
+- Factories podem manter a inicializacao idempotente como protecao adicional, mas nenhum handler pode depender de uma inicializacao implicita.
+- Deve haver um teste que proteja a chamada de inicializacao no entrypoint para evitar regressao no deploy.
+
 ## 8. SCHEDULER CANONICO NA BFF
 
 - Tarefas recorrentes de dominio devem ficar em Scheduler unico atras da BFF/worker, nao em `setInterval` espalhado.
