@@ -3,6 +3,7 @@ import { RemoteController } from "../controllers/RemoteController.js";
 import { AdapterFactory } from "../services/AdapterFactory.js";
 import { FirebaseSessionService } from "../services/FirebaseSessionService.js";
 import { RemoteCommandService } from "../services/RemoteCommandService.js";
+import { SmartThingsConnectionService } from "../services/SmartThingsConnectionService.js";
 import { ThemeService } from "../services/ThemeService.js";
 
 export class RemoteApp {
@@ -11,6 +12,7 @@ export class RemoteApp {
   #firebaseSessionService;
   #shell;
   #controller;
+  #smartThingsConnectionService;
 
   constructor(root, firebaseSessionService = new FirebaseSessionService()) {
     this.#root = root;
@@ -21,14 +23,24 @@ export class RemoteApp {
   async start() {
     this.#themeService.applySavedTheme();
     const firebaseSession = await this.#startFirebaseSession();
+    this.#smartThingsConnectionService = new SmartThingsConnectionService(firebaseSession?.functions, firebaseSession?.uid);
     const adapter = new AdapterFactory().create({
-      smartThings: { functions: firebaseSession?.functions }
+      smartThings: {
+        functions: firebaseSession?.functions,
+        deviceId: this.#smartThingsConnectionService.selectedDeviceId()
+      }
     });
     const commandService = new RemoteCommandService(adapter);
     this.#controller = new RemoteController(commandService);
-    this.#shell = new RemoteShell(this.#root, this.#controller, this.#themeService).render();
+    this.#shell = new RemoteShell(
+      this.#root,
+      this.#controller,
+      this.#themeService,
+      () => this.#startSmartThingsAuthorization()
+    ).render();
     const connection = await this.#connectSafely();
     this.#shell.updateConnection(connection);
+    await this.#resumeSmartThingsSelection();
     this.#registerServiceWorker();
   }
 
@@ -50,6 +62,39 @@ export class RemoteApp {
       return await this.#firebaseSessionService.start();
     } catch {
       return null;
+    }
+  }
+
+  async #startSmartThingsAuthorization() {
+    try {
+      await this.#smartThingsConnectionService.startAuthorization();
+    } catch (error) {
+      this.#shell.showMessage(error instanceof Error ? error.message : "Nao foi possivel iniciar a autorizacao SmartThings.");
+    }
+  }
+
+  async #resumeSmartThingsSelection() {
+    if (!globalThis.location?.hash.startsWith("#/smartthings/success")) {
+      return;
+    }
+    try {
+      const devices = await this.#smartThingsConnectionService.listDevices();
+      if (devices.length === 1) {
+        this.#selectSmartThingsDevice(devices[0]);
+        return;
+      }
+      this.#shell.showSmartThingsDeviceSelection(devices, (device) => this.#selectSmartThingsDevice(device));
+    } catch (error) {
+      this.#shell.showMessage(error instanceof Error ? error.message : "Nao foi possivel listar as TVs SmartThings.");
+    }
+  }
+
+  #selectSmartThingsDevice(device) {
+    try {
+      this.#smartThingsConnectionService.selectDevice(device);
+      globalThis.location.replace(globalThis.location.pathname);
+    } catch (error) {
+      this.#shell.showMessage(error instanceof Error ? error.message : "Nao foi possivel selecionar a TV.");
     }
   }
 

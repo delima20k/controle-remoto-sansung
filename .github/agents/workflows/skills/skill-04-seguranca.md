@@ -71,3 +71,9 @@ Referrer-Policy: no-referrer
 - Sessao anonima deve ser criada pelo SDK Web, sem credenciais inventadas no cliente.
 - Ao carregar SDKs pelo CDN, fixe a versao, permita somente `https://www.gstatic.com` no `script-src` e limite `connect-src` aos endpoints necessarios.
 - App Check deve ser monitorado antes de ser imposto, para nao bloquear PWA/TWA ja publicados.
+
+### App Check reCAPTCHA Enterprise em PWA/TWA
+
+- A chave de site do reCAPTCHA Enterprise e publica e pode ficar na configuracao Web; tokens, segredos e chaves de integracao permanecem exclusivamente no backend.
+- Carregue o SDK App Check na mesma versao dos demais SDKs Firebase e ative-o antes de acessar Authentication, Functions ou outro recurso protegido, com renovacao automatica habilitada.
+- Quando uma Function ja exige App Check, a publicacao do cliente que o ativa faz parte da mesma entrega; valide o fluxo real e acompanhe as metricas antes de ampliar a imposicao para outros servicos.

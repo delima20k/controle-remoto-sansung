@@ -125,6 +125,11 @@ Para cada nova rota ou ajuste na BFF:
 - Tokens, payloads integrais e URLs temporarias nao podem ir para logs.
 - Endpoints de webhook devem compor apenas as dependencias que usam; nao devem inicializar servicos que exigem secrets ou banco quando o evento nao precisa deles.
 
+### OAuth externo consumido pelo PWA
+
+- O PWA deve solicitar a URL OAuth exclusivamente pela Function autenticada e validar protocolo, host e caminho permitido antes de redirecionar o navegador.
+- A escolha local do dispositivo pode guardar somente seu identificador, separado por usuario; tokens OAuth ficam somente no backend criptografado.
+
 ## 7.2 DEPLOY TYPESCRIPT DE FUNCTIONS
 
 - O campo `main` do pacote de Functions deve apontar exatamente para o entrypoint gerado pelo `tsconfig.json`.

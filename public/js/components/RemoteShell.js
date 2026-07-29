@@ -24,11 +24,14 @@ export class RemoteShell {
   #numericSheet;
   #extrasSheet;
   #themePanel;
+  #onSmartThingsConnect;
+  #setupPanel;
 
-  constructor(root, controller, themeService) {
+  constructor(root, controller, themeService, onSmartThingsConnect = async () => undefined) {
     this.#root = root;
     this.#controller = controller;
     this.#themeService = themeService;
+    this.#onSmartThingsConnect = onSmartThingsConnect;
   }
 
   render() {
@@ -38,7 +41,8 @@ export class RemoteShell {
     const main = this.#mainControls();
     const footer = this.#footerControls();
     this.#statusLine = this.#builder.element("div", { className: "remote-status-line", text: "Metodo: aguardando conexao" });
-    shell.append(this.#statusHeader.element, topControls, main, footer, this.#statusLine);
+    this.#setupPanel = this.#smartThingsSetupPanel();
+    shell.append(this.#statusHeader.element, this.#setupPanel, topControls, main, footer, this.#statusLine);
     this.#root.replaceChildren(shell);
     this.#toast = new ToastPresenter(shell);
     this.#appsSheet = new AppsBottomSheet((action) => this.#handleCommand(action));
@@ -51,6 +55,9 @@ export class RemoteShell {
 
   updateConnection(connection) {
     this.#statusHeader.update(connection);
+    if (connection?.connected && connection.method === "SmartThings") {
+      this.#setupPanel.replaceChildren(this.#builder.element("span", { text: "TV conectada por SmartThings" }));
+    }
     this.refreshAvailability();
   }
 
@@ -60,6 +67,38 @@ export class RemoteShell {
         item.setAvailability(this.#controller.getAvailability(item.command));
       }
     }
+  }
+
+  showMessage(message) {
+    this.#toast.show(message);
+  }
+
+  showSmartThingsDeviceSelection(devices, onSelect) {
+    this.#setupPanel.replaceChildren();
+    const title = this.#builder.element("strong", { text: "Escolha sua TV SmartThings" });
+    const description = this.#builder.element("span", { text: devices.length ? "Selecione a TV que este celular vai controlar." : "Nenhuma TV compativel foi encontrada na sua conta SmartThings." });
+    this.#setupPanel.append(title, description);
+    for (const device of devices) {
+      const button = this.#builder.element("button", {
+        className: "smartthings-setup__device",
+        text: device.label ?? "Samsung TV",
+        attributes: { type: "button" }
+      });
+      button.addEventListener("click", () => onSelect(device));
+      this.#setupPanel.append(button);
+    }
+  }
+
+  #smartThingsSetupPanel() {
+    const panel = this.#builder.element("section", { className: "smartthings-setup", attributes: { "aria-label": "Conexao SmartThings" } });
+    const button = this.#builder.element("button", { className: "smartthings-setup__button", text: "CONECTAR TV", attributes: { type: "button" } });
+    button.addEventListener("click", async () => {
+      button.setAttribute("aria-busy", "true");
+      await this.#onSmartThingsConnect();
+      button.setAttribute("aria-busy", "false");
+    });
+    panel.append(this.#builder.element("span", { text: "SmartThings" }), button);
+    return panel;
   }
 
   #topControls() {

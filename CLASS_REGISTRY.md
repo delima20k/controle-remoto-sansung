@@ -57,6 +57,7 @@
 | SmartThingsCapabilityResolver | functions/src/smartthings/SmartThingsCapabilityResolver.ts | application | Converte comandos abstratos em capabilities declaradas. | Functions |
 | SmartThingsClient | functions/src/smartthings/SmartThingsClient.ts | infra | Cliente HTTP restrito para SmartThings API oficial. | Functions |
 | SmartThingsCommandService | functions/src/smartthings/SmartThingsCommandService.ts | application | Orquestra validacao e envio de comandos SmartThings. | Functions |
+| SmartThingsConnectionService | public/js/services/SmartThingsConnectionService.js | application | Inicia OAuth seguro, lista TVs e persiste somente o identificador escolhido por usuario. | Front-end PWA/TWA |
 | SmartThingsDeviceService | functions/src/smartthings/SmartThingsDeviceService.ts | application | Lista, filtra, salva e consulta TVs/media players. | Functions |
 | SmartThingsOAuthService | functions/src/smartthings/SmartThingsOAuthService.ts | application | Controla OAuth, state, token exchange, refresh e desconexao. | Functions |
 | SmartThingsRemoteAdapter | public/js/services/SmartThingsRemoteAdapter.js | infra | Integra o front-end com callable Functions SmartThings quando configuradas. | Front-end PWA |

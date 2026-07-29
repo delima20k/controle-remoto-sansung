@@ -17,12 +17,18 @@ export class SmartThingsRemoteAdapter {
     if (!this.isConfigured()) {
       throw new Error("SmartThings nao configurado.");
     }
+    const devicesCallable = this.#functions.httpsCallable("listSmartThingsDevices");
+    const devicesResponse = await devicesCallable({});
+    const device = devicesResponse.data?.devices?.find((item) => item?.providerDeviceId === this.#deviceId);
+    if (!device) {
+      throw new Error("TV SmartThings selecionada nao foi encontrada.");
+    }
     const statusCallable = this.#functions.httpsCallable("getSmartThingsDeviceStatus");
-    const response = await statusCallable({ deviceId: this.#deviceId });
+    await statusCallable({ deviceId: this.#deviceId });
     return {
       connected: true,
       method: "SmartThings",
-      deviceProfile: response.data?.deviceProfile ?? response.data?.profile ?? null
+      deviceProfile: device.deviceProfile ?? null
     };
   }
 

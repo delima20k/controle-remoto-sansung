@@ -1,4 +1,4 @@
-const CACHE_NAME = "controle-tv-pwa-v4";
+const CACHE_NAME = "controle-tv-pwa-v5";
 const APP_SHELL = [
   "/",
   "/index.html",
