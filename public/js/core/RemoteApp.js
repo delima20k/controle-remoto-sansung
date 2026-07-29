@@ -2,6 +2,7 @@ import { RemoteShell } from "../components/RemoteShell.js";
 import { RemoteController } from "../controllers/RemoteController.js";
 import { AdapterFactory } from "../services/AdapterFactory.js";
 import { FirebaseSessionService } from "../services/FirebaseSessionService.js";
+import { PwaInstallService } from "../services/PwaInstallService.js";
 import { RemoteCommandService } from "../services/RemoteCommandService.js";
 import { SmartThingsConnectionService } from "../services/SmartThingsConnectionService.js";
 import { ThemeService } from "../services/ThemeService.js";
@@ -13,15 +14,18 @@ export class RemoteApp {
   #shell;
   #controller;
   #smartThingsConnectionService;
+  #pwaInstallService;
 
-  constructor(root, firebaseSessionService = new FirebaseSessionService()) {
+  constructor(root, firebaseSessionService = new FirebaseSessionService(), pwaInstallService = new PwaInstallService()) {
     this.#root = root;
     this.#themeService = new ThemeService();
     this.#firebaseSessionService = firebaseSessionService;
+    this.#pwaInstallService = pwaInstallService;
   }
 
   async start() {
     this.#themeService.applySavedTheme();
+    this.#pwaInstallService.start();
     const firebaseSession = await this.#startFirebaseSession();
     this.#smartThingsConnectionService = new SmartThingsConnectionService(firebaseSession?.functions, firebaseSession?.uid);
     const adapter = new AdapterFactory().create({
@@ -36,8 +40,10 @@ export class RemoteApp {
       this.#root,
       this.#controller,
       this.#themeService,
-      () => this.#startSmartThingsAuthorization()
+      () => this.#startSmartThingsAuthorization(),
+      () => this.#requestPwaInstallation()
     ).render();
+    this.#pwaInstallService.onAvailabilityChange((available) => this.#shell.setInstallAvailable(available));
     const connection = await this.#connectSafely();
     this.#shell.updateConnection(connection);
     await this.#resumeSmartThingsSelection();
@@ -95,6 +101,13 @@ export class RemoteApp {
       globalThis.location.replace(globalThis.location.pathname);
     } catch (error) {
       this.#shell.showMessage(error instanceof Error ? error.message : "Nao foi possivel selecionar a TV.");
+    }
+  }
+
+  async #requestPwaInstallation() {
+    const result = await this.#pwaInstallService.promptInstallation();
+    if (result.outcome === "dismissed") {
+      this.#shell.showMessage("Instalacao cancelada.");
     }
   }
 

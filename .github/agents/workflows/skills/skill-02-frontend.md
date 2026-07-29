@@ -110,3 +110,9 @@ const App = new NomeApp();
 - Cada Section concreta separa `Controller`, `State` e `View`; `Controller` recebe `State` e `View` por injecao e secoes nao acessam outras secoes diretamente.
 - Comunicacao entre Sections usa `SectionEventBus` com evento registrado em `/events/catalog.js`; validacao de catalogo fica ligada em desenvolvimento.
 - Toda Section e dona do cleanup de listeners, timers e observers que registrar. Teste de leak deve cobrir ciclos repetidos de `init`/`destroy`.
+
+## 9. INSTALACAO PWA PARA ANDROID
+
+- Manifesto deve declarar icones PNG `192x192` e `512x512`, inclusive `maskable`, alem de manter o service worker atualizado.
+- A UI de instalacao deve ficar oculta ate o evento `beforeinstallprompt`; o popup nativo so pode ser aberto por uma acao explicita do usuario.
+- O servico que escuta o navegador deve remover listeners ao ser destruido e ocultar a UI apos instalacao ou tentativa de prompt.

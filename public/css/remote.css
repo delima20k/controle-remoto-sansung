@@ -24,6 +24,22 @@
   gap: 12px;
 }
 
+.status-header__actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.status-header__install {
+  min-width: 74px;
+  padding: 0 10px;
+  border-color: var(--color-accent-strong);
+  color: #ffffff;
+  background: var(--color-accent);
+  font-size: 0.62rem;
+  font-weight: 850;
+}
+
 .status-header__title {
   margin: 0;
   font-size: clamp(1rem, 4.4vw, 1.25rem);

@@ -41,6 +41,7 @@
 | Segurança / OWASP / autenticação / JWT / headers | `skill-04-seguranca.md` |
 | Firebase Web em PWA/TWA / sessão anônima / SDK por CDN | `skill-04-seguranca.md` (Firebase Web em PWA/TWA), `skill-07-testes.md` |
 | App Check reCAPTCHA Enterprise em PWA/TWA / Functions protegidas | `skill-04-seguranca.md` (App Check reCAPTCHA Enterprise em PWA/TWA), `skill-07-testes.md` |
+| Instalacao PWA Android / beforeinstallprompt / icones de manifesto | `skill-02-frontend.md` (Instalacao PWA para Android), `skill-07-testes.md` |
 | Banco / queries / migrations / storage / Supabase | `skill-05-banco.md` |
 | RLS policies / cobertura CRUD / report de tabelas sem RLS | `skill-05-banco.md` (§ Cobertura automatizada de RLS), `skill-04-seguranca.md`, `skill-07-testes.md` |
 | Upload pre-assinado / pipeline assincrono de midia / variantes | `skill-05-banco.md` (Pipeline assincrono de midia na BFF), `skill-03-backend.md`, `skill-07-testes.md`, `barberflow-bff-api/docs/filas.md` |

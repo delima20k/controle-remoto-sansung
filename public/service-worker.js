@@ -1,10 +1,12 @@
-const CACHE_NAME = "controle-tv-pwa-v5";
+const CACHE_NAME = "controle-tv-pwa-v6";
 const APP_SHELL = [
   "/",
   "/index.html",
   "/offline.html",
   "/manifest.webmanifest",
   "/assets/icon.svg",
+  "/assets/icon-192.png",
+  "/assets/icon-512.png",
   "/css/tokens.css",
   "/css/base.css",
   "/css/remote.css",

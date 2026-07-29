@@ -25,18 +25,20 @@ export class RemoteShell {
   #extrasSheet;
   #themePanel;
   #onSmartThingsConnect;
+  #onInstall;
   #setupPanel;
 
-  constructor(root, controller, themeService, onSmartThingsConnect = async () => undefined) {
+  constructor(root, controller, themeService, onSmartThingsConnect = async () => undefined, onInstall = async () => undefined) {
     this.#root = root;
     this.#controller = controller;
     this.#themeService = themeService;
     this.#onSmartThingsConnect = onSmartThingsConnect;
+    this.#onInstall = onInstall;
   }
 
   render() {
     const shell = this.#builder.element("section", { className: "remote-shell", attributes: { "aria-label": "Controle remoto" } });
-    this.#statusHeader = new StatusHeader(() => this.#themePanel.open());
+    this.#statusHeader = new StatusHeader(() => this.#themePanel.open(), () => this.#onInstall());
     const topControls = this.#topControls();
     const main = this.#mainControls();
     const footer = this.#footerControls();
@@ -71,6 +73,10 @@ export class RemoteShell {
 
   showMessage(message) {
     this.#toast.show(message);
+  }
+
+  setInstallAvailable(available) {
+    this.#statusHeader.setInstallAvailable(available);
   }
 
   showSmartThingsDeviceSelection(devices, onSelect) {

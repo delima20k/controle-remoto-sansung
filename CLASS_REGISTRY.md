@@ -41,6 +41,7 @@
 | NumericKeypadSheet | public/js/components/NumericKeypadSheet.js | ui | Exibe teclado numerico usando NUMBER_KEY e bloqueando teclas sem contrato. | Front-end PWA |
 | PowerButton | public/js/components/PowerButton.js | ui | Renderiza botao power premium com comando seguro. | Front-end PWA |
 | PressRepeater | public/js/utils/PressRepeater.js | shared | Controla repeticao cancelavel para comandos pressionados. | Front-end PWA |
+| PwaInstallService | public/js/services/PwaInstallService.js | application | Captura o prompt de instalacao elegivel do navegador e o oferece sob acao do usuario. | Front-end PWA/TWA |
 | RateLimiter | functions/src/middleware/RateLimiter.ts | infra | Aplica rate limit distribuido usando Firestore. | Functions |
 | RateLimiter | local-bridge/src/utils/RateLimiter.ts | infra | Aplica rate limit em memoria no bridge local. | Local Bridge |
 | RemoteApp | public/js/core/RemoteApp.js | application | Inicializa tema, adapter, controller, shell e service worker. | Front-end PWA |

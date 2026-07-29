@@ -7,8 +7,9 @@ export class StatusHeader {
   #statusText;
   #batteryText;
   #settingsButton;
+  #installButton;
 
-  constructor(onSettings) {
+  constructor(onSettings, onInstall = async () => undefined) {
     this.#element = this.#builder.element("header", { className: "status-header" });
     const textWrap = this.#builder.element("div");
     textWrap.append(this.#builder.element("h1", { className: "status-header__title", text: "Samsung Crystal UHD" }));
@@ -21,7 +22,11 @@ export class StatusHeader {
     textWrap.append(meta);
     this.#settingsButton = this.#builder.element("button", { className: "icon-button", text: "SET", attributes: { type: "button", "aria-label": "Configuracoes" } });
     this.#settingsButton.addEventListener("click", onSettings);
-    this.#element.append(textWrap, this.#settingsButton);
+    this.#installButton = this.#builder.element("button", { className: "icon-button status-header__install", text: "INSTALAR", attributes: { type: "button", "aria-label": "Instalar aplicativo", hidden: "hidden" } });
+    this.#installButton.addEventListener("click", onInstall);
+    const actions = this.#builder.element("div", { className: "status-header__actions" });
+    actions.append(this.#installButton, this.#settingsButton);
+    this.#element.append(textWrap, actions);
     this.#loadBattery();
   }
 
@@ -33,6 +38,10 @@ export class StatusHeader {
     const connected = Boolean(connection?.connected);
     this.#statusDot.classList.toggle("status-dot--offline", !connected);
     this.#statusText.textContent = connected ? `${connection.method} conectado` : "Desconectado";
+  }
+
+  setInstallAvailable(available) {
+    this.#installButton.toggleAttribute("hidden", !available);
   }
 
   async #loadBattery() {
