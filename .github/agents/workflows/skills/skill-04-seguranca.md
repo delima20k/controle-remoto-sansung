@@ -77,3 +77,8 @@ Referrer-Policy: no-referrer
 - A chave de site do reCAPTCHA Enterprise e publica e pode ficar na configuracao Web; tokens, segredos e chaves de integracao permanecem exclusivamente no backend.
 - Carregue o SDK App Check na mesma versao dos demais SDKs Firebase e ative-o antes de acessar Authentication, Functions ou outro recurso protegido, com renovacao automatica habilitada.
 - Quando uma Function ja exige App Check, a publicacao do cliente que o ativa faz parte da mesma entrega; valide o fluxo real e acompanhe as metricas antes de ampliar a imposicao para outros servicos.
+
+#### CSP minimo para reCAPTCHA Enterprise
+
+- Ao usar App Check com reCAPTCHA Enterprise, `script-src`, `connect-src` e `frame-src` devem permitir somente os endpoints oficiais `www.google.com/recaptcha`, `www.gstatic.com/recaptcha` e `recaptcha.google.com/recaptcha` quando aplicaveis.
+- Nao use curingas nem enfraqueca `default-src` ou `manifest-src` para contornar protecao de deploy; a protecao da hospedagem deve ser corrigida no provedor.
