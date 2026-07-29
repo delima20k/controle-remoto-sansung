@@ -26,7 +26,7 @@ export class StreamingAppsCatalog {
     mubi: "mubi",
     twitch: "twitch",
     dazn: "dazn",
-    "google-play-filmes": "googleplayfilmes",
+    "google-play-filmes": "googleplay",
     "steam-link": "steam",
     kodi: "kodi",
     deezer: "deezer",

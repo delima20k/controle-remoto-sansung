@@ -70,6 +70,7 @@ Referrer-Policy: no-referrer
 - Segredos de integracoes externas, tokens de acesso e chaves de criptografia ficam exclusivamente nas Functions/Secret Manager.
 - Sessao anonima deve ser criada pelo SDK Web, sem credenciais inventadas no cliente.
 - Ao carregar SDKs pelo CDN, fixe a versao, permita somente `https://www.gstatic.com` no `script-src` e limite `connect-src` aos endpoints necessarios.
+- Se o SDK Firebase carregar um script auxiliar ou iframe de autenticacao, permita somente o host exato na diretiva CSP correspondente e cubra a allowlist com teste; nunca substitua por curinga amplo.
 - App Check deve ser monitorado antes de ser imposto, para nao bloquear PWA/TWA ja publicados.
 
 ### App Check reCAPTCHA Enterprise em PWA/TWA

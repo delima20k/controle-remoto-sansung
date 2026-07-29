@@ -11,6 +11,7 @@ describe("StreamingAppsCatalog", () => {
     assert.equal(apps.every((app) => app.command === "OPEN_APP" && app.iconKind && app.icon && (app.iconUrl === null || /^https:\/\/cdn\.simpleicons\.org\/[a-z0-9]+$/.test(app.iconUrl))), true);
     assert.deepEqual(apps.slice(0, 3).map((app) => app.label), ["Netflix", "Amazon Prime Video", "YouTube"]);
     assert.equal(apps.find((app) => app.id === "prime-video")?.iconUrl, null);
+    assert.equal(apps.find((app) => app.id === "google-play-filmes")?.iconUrl, "https://cdn.simpleicons.org/googleplay");
   });
 
   it("deve ocultar apps nao instalados quando houver lista confirmada", async () => {
