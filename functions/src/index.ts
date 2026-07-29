@@ -78,7 +78,7 @@ export const smartThingsWebhook = onRequest(
       return;
     }
     try {
-      await FunctionFactory.build().smartThingsWebhookConfirmationService.handle(request.body ?? {});
+      await FunctionFactory.buildSmartThingsWebhookConfirmationService().handle(request.body ?? {});
       response.status(204).send();
     } catch {
       response.status(400).send("Requisicao SmartThings invalida");

@@ -21,6 +21,10 @@ import { AppConfig } from "./config/AppConfig";
 import { NaturalLanguageCommandService } from "./ai/NaturalLanguageCommandService";
 
 export class FunctionFactory {
+  static buildSmartThingsWebhookConfirmationService(): SmartThingsWebhookConfirmationService {
+    return new SmartThingsWebhookConfirmationService(new HttpClient());
+  }
+
   static build() {
     const db = AdminApp.firestore();
     const auth = AdminApp.auth();

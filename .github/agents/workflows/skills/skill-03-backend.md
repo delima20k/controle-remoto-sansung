@@ -123,6 +123,7 @@ Para cada nova rota ou ajuste na BFF:
 - URLs de confirmacao recebidas em payload devem ser validadas por protocolo e allowlist de host antes de qualquer chamada externa, evitando SSRF.
 - Eventos sem processamento implementado devem ser reconhecidos sem persistir dados ou executar efeitos colaterais.
 - Tokens, payloads integrais e URLs temporarias nao podem ir para logs.
+- Endpoints de webhook devem compor apenas as dependencias que usam; nao devem inicializar servicos que exigem secrets ou banco quando o evento nao precisa deles.
 
 ## 7.2 DEPLOY TYPESCRIPT DE FUNCTIONS
 
