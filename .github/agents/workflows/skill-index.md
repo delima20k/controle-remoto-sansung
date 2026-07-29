@@ -81,6 +81,12 @@ Quando uma nova boa prática for criada:
 |---|---|
 | Firebase Admin em Functions / inicializacao do entrypoint | `skill-03-backend.md` (Inicializacao do Firebase Admin no entrypoint), `skill-07-testes.md` |
 
+## Atualizacao DELIMA - Cache PWA e recursos externos
+
+| Tipo de tarefa | Arquivos a ler |
+|---|---|
+| Cache PWA / service worker / recursos externos bloqueados por CSP | `skill-02-frontend.md` (Logotipos de aplicativos), `skill-04-seguranca.md`, `skill-07-testes.md` |
+
 ## Atualizacao DELIMA - Notificacoes Canonicas
 
 | Tipo de tarefa | Arquivos a ler |
